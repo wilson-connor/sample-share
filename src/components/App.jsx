@@ -1,8 +1,12 @@
 import React from 'react';
+import Player from './Player';
 
 const App = () => {
   return (
-    <div>HELLO WORLD</div>
+    <div>
+      <div>HELLO WORLD</div>
+      <Player />
+    </div>
   );
 };
 
