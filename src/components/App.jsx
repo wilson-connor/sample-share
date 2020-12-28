@@ -1,13 +1,9 @@
 import React from 'react';
 
-export class App extends React.Component {
+const App = () => {
+  return (
+    <div>HELLO WORLD</div>
+  );
+};
 
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return(
-      <div>HELLO WORLD</div>
-    );
-  }
-}
+export default App;
