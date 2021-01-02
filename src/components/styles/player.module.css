@@ -1,0 +1,8 @@
+
+.playButton {
+  color: blue;
+}
+
+.playButton:hover {
+  cursor: pointer;
+}

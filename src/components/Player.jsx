@@ -1,26 +1,49 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import WaveSurfer from 'wavesurfer.js';
+import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import styles from './styles/player.module.css';
 
-const Player = () => {
-  let waveForm;
+export default class Player extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playing: false,
+    };
+    this.waveFormId = `waveform${props.id}`;
+    this.handlePlay = this.handlePlay.bind(this);
+  }
 
-  const handleClickPlay = () => {
-    waveForm.play();
+  componentDidMount() {
+    const { trackUrl } = this.props;
+
+    this.waveform = WaveSurfer.create({
+      barWidth: 3,
+      cursorWidth: 1,
+      container: `#${this.waveFormId}`,
+      backend: 'WebAudio',
+      height: 80,
+      progressColor: '#2D5BFF',
+      responsive: true,
+      waveColor: '#EFEFEF',
+      cursorColor: 'transparent',
+    });
+
+    this.waveform.load(trackUrl);
   };
 
-  useEffect(() => {
-    waveForm = WaveSurfer.create({
-      container: '#waveform',
-    });
-    waveForm.load('allTalk.wav');
-  });
+  handlePlay() {
+    this.setState({ playing: !this.state.playing });
+    this.waveform.playPause();
+  };
 
-  return (
-    <div>
-      <button onClick={handleClickPlay}>Play</button>
-      <div id="waveform" />
-    </div>
-  );
-};
-
-export default Player;
+  render() {
+    return (
+      <div>
+        <div onClick={this.handlePlay} >
+          {!this.state.playing ? 'Play' : 'Pause'}
+        </div>
+        <div id={this.waveFormId} />
+      </div>
+    );
+  }
+}
