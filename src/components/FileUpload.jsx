@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import styles from './styles/fileupload.module.css';
 
 const FileUpload = ({ handleAddTrack }) => {
   const [file, setFile] = useState(null);
@@ -13,7 +14,6 @@ const FileUpload = ({ handleAddTrack }) => {
   const handleSubmit = async () => {
     const formData = new FormData();
     formData.append('audio', file);
-    console.log(formData);
     try {
       const res = await axios.post('/audio', formData, {
         headers: {
@@ -27,10 +27,15 @@ const FileUpload = ({ handleAddTrack }) => {
   };
 
   return (
-    <div>
-      <div>Upload a file</div>
-      <input type="file" onChange={handleChange} />
-      <button onClick={handleSubmit}>Submit</button>
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <div>Upload a file</div>
+      </div>
+      <input id="file" type="file" onChange={handleChange} className={styles.hidden} />
+      <div className={styles.wrapper}>
+        <label  className={styles.button} htmlFor="file">Choose File</label>
+        <button className={styles.button} onClick={handleSubmit}>Upload</button>
+      </div>
     </div>
   );
 };

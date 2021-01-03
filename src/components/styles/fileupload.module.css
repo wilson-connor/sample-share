@@ -1,0 +1,29 @@
+
+.container {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 900;
+  font-size: 2rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.button {
+  padding: 1rem;
+  background-color: rgb(11, 61, 85);
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: seashell;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}

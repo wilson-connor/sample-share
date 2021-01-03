@@ -11,7 +11,6 @@ const App = () => {
     try {
       const { data } = await axios.get('/audio');
       setTracks(data);
-      console.log(data);
     } catch(err) {
       console.log(err);
     }
@@ -19,12 +18,11 @@ const App = () => {
 
   const handleAddTrack = (track) => {
     const newTracks = [...tracks, track];
-    console.log(newTracks);
     setTracks(newTracks);
   };
 
   return (
-    <div>
+    <div className={app}>
       <nav className={styles.nav}>
         <div className={styles.title}>Sample Share</div>
       </nav>

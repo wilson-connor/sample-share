@@ -1,4 +1,10 @@
 
+.container {
+  border-width: 1rem;
+  border-style: solid;
+  border-color: #eeeeeebb;
+}
+
 .playButton {
   color: blue;
 }
