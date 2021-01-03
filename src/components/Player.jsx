@@ -28,20 +28,18 @@ export default class Player extends React.Component {
       cursorColor: 'transparent',
     });
 
-    this.waveform.load(trackUrl);
+    this.waveform.load(`assets/${trackUrl}`);
   };
 
   handlePlay() {
     this.setState({ playing: !this.state.playing });
     this.waveform.playPause();
-  };
+  }
 
   render() {
     return (
-      <div>
-        <div onClick={this.handlePlay} >
-          {!this.state.playing ? 'Play' : 'Pause'}
-        </div>
+      <div className={styles.player}>
+        {!this.state.playing ? <FaPlayCircle size={20} onClick={this.handlePlay} /> : <FaPauseCircle size={20} onClick={this.handlePlay} />}
         <div id={this.waveFormId} />
       </div>
     );
