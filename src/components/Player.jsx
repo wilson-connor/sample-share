@@ -1,6 +1,6 @@
 import React from 'react';
 import WaveSurfer from 'wavesurfer.js';
-import { FaPlayCircle, FaPauseCircle } from 'react-icons/fa';
+import { FaPlayCircle } from 'react-icons/fa';
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 import styles from './styles/player.module.css';
@@ -56,10 +56,13 @@ export default class Player extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        {!this.state.playing ? <FaPlayCircle size={20} onClick={this.handlePlay} /> : <FaPauseCircle size={20} onClick={this.handlePlay} />}
-        <div>{this.props.trackUrl}</div>
-        <div onClick={this.handleDownload}>download</div>
-        <div id={this.waveFormId} />
+        <div>
+          <FaPlayCircle size={30} onClick={this.handlePlay} />
+          <div>{this.props.trackUrl}</div>
+        </div>
+        <div id={this.waveFormId}/>
+          <button onClick={this.handleDownload} className={styles.button}>download</button>
+          <button onClick={() => this.props.handleDeleteTrack(this.props.trackUrl)} className={styles.button}>delete</button>
       </div>
     );
   }

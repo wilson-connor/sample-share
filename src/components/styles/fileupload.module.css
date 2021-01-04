@@ -3,25 +3,31 @@
   font-family: 'Source Code Pro', monospace;
   font-weight: 900;
   font-size: 2rem;
+  background-color: #d6d6d6ce;
+  padding-bottom: 0.25rem;
 }
 
 .wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 1em;
 }
 
 .button {
   padding: 1rem;
-  background-color: rgb(11, 61, 85);
+  background-color: rgba(78, 78, 78, 0.808);
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
   color: seashell;
+  border: none;
+  transition: background-color 0.5s;
 }
 
 .button:hover {
   cursor: pointer;
+  background-color: blue;
 }
 
 .hidden {

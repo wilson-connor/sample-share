@@ -1,3 +1,5 @@
 node_modules
 .env
-dist/
+dist/bundle.js
+dist/bundle.js.LICENSE.txt
+dist/assets/

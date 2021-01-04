@@ -5,6 +5,7 @@ import styles from './styles/fileupload.module.css';
 const FileUpload = ({ handleAddTrack }) => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
+  const [uploading, setUploadComplete] = useState(false);
 
   const handleChange = (e) => {
     setFile(e.target.files[0]);
@@ -15,11 +16,12 @@ const FileUpload = ({ handleAddTrack }) => {
     const formData = new FormData();
     formData.append('audio', file);
     try {
-      const res = await axios.post('/audio', formData, {
+      await axios.post('/audio', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+
       handleAddTrack(fileName);
     } catch (err) {
       console.log(err);
@@ -35,6 +37,7 @@ const FileUpload = ({ handleAddTrack }) => {
       <div className={styles.wrapper}>
         <label  className={styles.button} htmlFor="file">Choose File</label>
         <button className={styles.button} onClick={handleSubmit}>Upload</button>
+        {fileName ? <div>{fileName}</div> : <div>No file selected</div>}
       </div>
     </div>
   );

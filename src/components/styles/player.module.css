@@ -1,8 +1,28 @@
-
 .container {
-  border-width: 1rem;
-  border-style: solid;
-  border-color: #eeeeeebb;
+  background-color: #d6d6d6ce;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: .5rem;
+  color: seashell;
+}
+
+.button {
+  padding: .5rem;
+  margin: .5rem;
+  background-color: rgba(78, 78, 78, 0.808);
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: seashell;
+  border: none;
+  transition: background-color 0.5s;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: blue;
 }
 
 .playButton {

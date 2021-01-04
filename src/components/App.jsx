@@ -7,10 +7,19 @@ import styles from './styles/app.module.css';
 const App = () => {
   const [tracks, setTracks] = useState([]);
 
-  useEffect(async () => {
+  const getTracks = async () => {
     try {
       const { data } = await axios.get('/audio');
       setTracks(data);
+    }
+      catch (err) {
+      throw err;
+    }
+  };
+
+  useEffect(async () => {
+    try {
+      getTracks();
     } catch(err) {
       console.log(err);
     }
@@ -21,6 +30,12 @@ const App = () => {
     setTracks(newTracks);
   };
 
+  const handleDeleteTrack = (track) => {
+    axios.delete(`/audio/${track}`)
+      .then(() => getTracks())
+      .catch((fail) => console.log(fail));
+  };
+
   return (
     <div className={app}>
       <nav className={styles.nav}>
@@ -28,7 +43,7 @@ const App = () => {
       </nav>
       <FileUpload handleAddTrack={handleAddTrack} />
       <div>
-        {tracks.map((track, index) => <Player trackUrl={track} id={index} key={index} />)}
+        {tracks.map((track, index) => <Player trackUrl={track} id={index} key={index} handleDeleteTrack={handleDeleteTrack} />)}
       </div>
     </div>
   );
