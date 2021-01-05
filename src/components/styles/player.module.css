@@ -8,6 +8,10 @@
   color: seashell;
 }
 
+.topContainer {
+  display: flex;
+}
+
 .button {
   padding: .5rem;
   margin: .5rem;
@@ -26,9 +30,10 @@
 }
 
 .playButton {
-  color: blue;
+  margin-right: 1rem;
 }
 
 .playButton:hover {
   cursor: pointer;
+  color: blue;
 }

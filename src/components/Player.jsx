@@ -56,8 +56,8 @@ export default class Player extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <div>
-          <FaPlayCircle size={30} onClick={this.handlePlay} />
+        <div className={styles.topContainer}>
+          <FaPlayCircle className={styles.playButton} size={30} onClick={this.handlePlay} />
           <div>{this.props.trackUrl}</div>
         </div>
         <div id={this.waveFormId}/>

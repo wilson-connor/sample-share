@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './styles/fileupload.module.css';
+import { BeatLoader } from 'react-spinners';
 
 const FileUpload = ({ handleAddTrack }) => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState(null);
-  const [uploading, setUploadComplete] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const handleChange = (e) => {
     setFile(e.target.files[0]);
@@ -13,6 +14,7 @@ const FileUpload = ({ handleAddTrack }) => {
   };
 
   const handleSubmit = async () => {
+    setUploading(true);
     const formData = new FormData();
     formData.append('audio', file);
     try {
@@ -21,13 +23,21 @@ const FileUpload = ({ handleAddTrack }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-
       handleAddTrack(fileName);
+      setUploading(false);
+      setFileName(null);
     } catch (err) {
       console.log(err);
     }
   };
 
+  let selectedFile;
+
+  if (uploading) {
+    selectedFile = <BeatLoader size={30} />;
+  } else {
+    selectedFile = fileName ? <div>{fileName}</div> : <div>No file selected</div>;
+  }
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -37,7 +47,7 @@ const FileUpload = ({ handleAddTrack }) => {
       <div className={styles.wrapper}>
         <label  className={styles.button} htmlFor="file">Choose File</label>
         <button className={styles.button} onClick={handleSubmit}>Upload</button>
-        {fileName ? <div>{fileName}</div> : <div>No file selected</div>}
+        {selectedFile}
       </div>
     </div>
   );
