@@ -14,6 +14,9 @@ const FileUpload = ({ handleAddTrack }) => {
   };
 
   const handleSubmit = async () => {
+    if (!fileName) {
+      return;
+    }
     setUploading(true);
     const formData = new FormData();
     formData.append('audio', file);
